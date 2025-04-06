@@ -1,7 +1,7 @@
 {
     "app": {
         "port": "3000",
-        "name": "Toys-R-Us",
+        "name": "Account Operations",
         "secret": "MySecret",
         "jwtSecret": "MyJwtSecret"
     },
@@ -36,6 +36,6 @@
     "mongoose": {
         "host": "127.0.0.1",
         "port": 27017,
-        "database": "toysRUs"
+        "database": "bank"
     }
 }

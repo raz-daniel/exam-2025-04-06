@@ -5,7 +5,7 @@ import { connect } from "./db/mongoose"
 import errorLogger from "./middlewares/error/error-logger"
 import errorResponder from "./middlewares/error/error-responder"
 import notFound from "./middlewares/not-found"
-import gamesRouter from "./routers/gamesRouter"
+import accountOperationsRouter from "./routers/acountOperationsRouter"
 
 const name = config.get<string>('mongoose.database')
 
@@ -27,7 +27,7 @@ export async function start() {
         app.use(cors())
         app.use(json())
 
-        app.use('/games', gamesRouter)
+        app.use('/account-operations', accountOperationsRouter)
         app.use(notFound)
 
         app.use(errorLogger)

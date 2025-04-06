@@ -2,6 +2,6 @@
     "mongoose": {
         "host": "mongodb-test",
         "port": 27017,
-        "database": "toysRUs"
+        "database": "bank"
     }
 }
