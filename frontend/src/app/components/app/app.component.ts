@@ -3,10 +3,11 @@ import { LayoutComponent } from "../layout/layout/layout.component";
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [LayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = '02-social-network-client';
+  title = 'Bank Managements';
 }

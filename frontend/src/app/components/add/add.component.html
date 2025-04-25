@@ -1,0 +1,108 @@
+<p>add works!</p>
+<div class="container">
+    <h2>Add New Operation</h2>
+    
+    <form [formGroup]="newForm" (ngSubmit)="addOperation()" class="operation-form">
+      <div class="form-group">
+        <label for="accountNumber">Account Number</label>
+        <input 
+          id="accountNumber" 
+          type="text" 
+          formControlName="accountNumber" 
+          class="form-control"
+          placeholder="Enter account number"
+        >
+        <div *ngIf="newForm.controls.accountNumber.invalid && newForm.controls.accountNumber.touched" class="error">
+          Account number is required (min 4 characters)
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="type">Operation Type</label>
+        <select id="type" formControlName="type" class="form-control">
+          <option value="">Select operation type</option>
+          <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+        </select>
+        <div *ngIf="newForm.controls.type.invalid && newForm.controls.type.touched" class="error">
+          Operation type is required
+        </div>
+      </div>
+      
+      <div formGroupName="metadata">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input 
+            id="amount" 
+            type="number" 
+            formControlName="amount" 
+            class="form-control"
+            min="0"
+          >
+          <div *ngIf="newForm.get('metadata.amount')?.invalid && newForm.get('metadata.amount')?.touched" class="error">
+            Valid amount is required
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input 
+            id="date" 
+            type="date" 
+            formControlName="date" 
+            class="form-control"
+          >
+          <div *ngIf="newForm.get('metadata.date')?.invalid && newForm.get('metadata.date')?.touched" class="error">
+            Valid date is required (cannot be in the future)
+          </div>
+        </div>
+        
+        <!-- Loan-specific fields -->
+        @if (isLoanSelected) {
+          <div class="form-group">
+            <label for="payment">Number of Payments</label>
+            <input 
+              id="payment" 
+              type="number" 
+              formControlName="payment" 
+              class="form-control"
+              min="1"
+            >
+            <div *ngIf="newForm.get('metadata.payment')?.invalid && newForm.get('metadata.payment')?.touched" class="error">
+              Number of payments is required
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="interest">Interest Rate (%)</label>
+            <input 
+              id="interest" 
+              type="number" 
+              formControlName="interest" 
+              class="form-control"
+              min="0"
+              step="0.1"
+            >
+            <div *ngIf="newForm.get('metadata.interest')?.invalid && newForm.get('metadata.interest')?.touched" class="error">
+              Interest rate is required
+            </div>
+          </div>
+        }
+      </div>
+      
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          class="submit-button" 
+          [disabled]="newForm.invalid">
+          Add Operation
+        </button>
+        
+        <button 
+          type="button" 
+          class="cancel-button" 
+          (click)="router.navigate(['/account-operations'])">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>

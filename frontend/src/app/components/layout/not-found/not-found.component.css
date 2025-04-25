@@ -1,5 +1,50 @@
-p {
-    color: red;
-    font-weight: 900;
-    font-size: 24px;
-}
+/* not-found.component.css */
+.not-found-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+  
+  .error-code {
+    font-size: 8rem;
+    font-weight: 700;
+    color: #3498db;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .actions {
+    margin-top: 25px;
+  }
+  
+  .home-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .home-button:hover {
+    background-color: #2980b9;
+  }

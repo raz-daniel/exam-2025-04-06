@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
-import { ProfileComponent } from './components/posts/profile/profile.component';
-import { FeedComponent } from './components/posts/feed/feed.component';
+import { AddComponent } from './components/add/add.component';
+import { AccountOperationsComponent } from './components/account-operations/account-operations.component';
 import { NotFoundComponent } from './components/layout/not-found/not-found.component';
-import { EditComponent } from './components/posts/edit/edit.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
-    { path: 'profile', component: ProfileComponent },
-    { path: 'edit/:postId', component: EditComponent },
-    { path: '', redirectTo: 'profile', pathMatch: 'full'},
-    { path: 'feed', component: FeedComponent },
-    { path: '**', component: NotFoundComponent }
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'add', component: AddComponent},
+    { path: 'home', component: HomeComponent},
+    { path: 'account-operation', component: AccountOperationsComponent},
+    { path: '**', component: NotFoundComponent}
 ];

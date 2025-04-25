@@ -1,0 +1,54 @@
+<p>account-operations works!</p>
+<div class="container">
+    <h2>Account Operations</h2>
+    
+    <div class="search-container">
+      <input 
+        type="text" 
+        placeholder="Enter account number" 
+        class="account-input"
+        (keyup.enter)="operationsByAccount($event)" 
+      />
+      <button 
+        class="search-button" 
+        (click)="operationsByAccount($event)">
+        Search
+      </button>
+    </div>
+    
+    <div *ngIf="operations().length > 0" class="operations-container">
+      <h3>Operations for Account: {{ accountNumber() }}</h3>
+      
+      <div class="operations-grid">
+        @for (operation of operations(); track operation.id) {
+          <div class="operation-card" [class.highlight]="operation.id === newOperationId">
+            <div class="operation-header">
+              <span class="operation-type" [ngClass]="operation.type.toLowerCase()">{{ operation.type }}</span>
+              <span class="operation-date">{{ operation.metadata.date | date:'medium' }}</span>
+            </div>
+            
+            <div class="operation-details">
+              <div class="amount">
+                <strong>Amount:</strong> {{ operation.metadata.amount | currency:'USD' }}
+              </div>
+              
+              @if (operation.type === 'Loan') {
+                <div class="loan-details">
+                  <div><strong>Interest Rate:</strong> {{ operation.metadata.interest }}%</div>
+                  <div><strong>Payments:</strong> {{ operation.metadata.payment }}</div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    
+    <div *ngIf="accountNumber() && operations().length === 0" class="no-operations">
+      No operations found for account {{ accountNumber() }}
+    </div>
+    
+    <div *ngIf="!accountNumber()" class="instructions">
+      Enter an account number to view operations
+    </div>
+  </div>

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-import { AccountOperations } from '../models/accountOpperations/accountOpperations.model';
-import { Draft } from '../models/accountOpperations/draft.model';
+import { Draft } from '../models/accountOperations/draft.model';
+import { AccountOperations } from '../models/accountOperations/accountOperations.model';
 
 
 @Injectable({
