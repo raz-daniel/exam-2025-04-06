@@ -1,3 +1,3 @@
 export const environment = {
-    restServerUrl: 'http://mysite.com'
+    restServerUrl: 'http://localhost:3000'
 };
