@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AccountOperationsService } from '../../../services/accountOperations.service';
 import { Router } from '@angular/router';
-import { AccountOperationsService } from '../../services/accountOperations.service';
-import { OperationType } from '../../enum/OperationType.enum';
-import { Draft } from '../../models/accountOperations/draft.model';
-
+import { Draft } from '../../../models/accountOperations/draft.model';
+import { OperationType } from '../../../enum/OperationType.enum';
 
 @Component({
   selector: 'app-add',
@@ -31,7 +30,7 @@ export class AddComponent implements OnInit {
         Validators.required,
         Validators.min(0)
       ]),
-      date: new FormControl(new Date(), [
+      date: new FormControl(new Date().toISOString().split('T')[0], [
         Validators.required
       ]),
       payment: new FormControl(null),
@@ -90,8 +89,25 @@ export class AddComponent implements OnInit {
     if (this.newForm.invalid) return;
     
     try {
-      const formValue = this.newForm.value as Draft;
-      await this.accountOperationService.addOperation(formValue);
+      // Convert the form value to match your Draft interface
+      const formValue = this.newForm.value;
+      
+      // Create a proper Draft object
+      const draftOperation: Draft = {
+        accountNumber: formValue.accountNumber as string,
+        type: formValue.type as OperationType,
+        metadata: {
+          amount: Number(formValue.metadata?.amount),
+          date: new Date(formValue.metadata?.date as string),
+          // Only include payment and interest for loan operations
+          ...(formValue.type === OperationType.LOAN ? {
+            payment: Number(formValue.metadata?.payment),
+            interest: Number(formValue.metadata?.interest)
+          } : {})
+        }
+      };
+      
+      await this.accountOperationService.addOperation(draftOperation);
       this.router.navigate(['/account-operations']);
     } catch (e) {
       alert(e);

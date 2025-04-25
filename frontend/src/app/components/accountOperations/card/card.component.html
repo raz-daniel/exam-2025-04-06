@@ -1,0 +1,19 @@
+<div class="operation-card" [class.highlight]="isHighlighted">
+    <div class="operation-header">
+      <span class="operation-type" [ngClass]="operation.type.toLowerCase()">{{ operation.type }}</span>
+      <span class="operation-date">{{ operation.metadata.date | date:'medium' }}</span>
+    </div>
+    
+    <div class="operation-details">
+      <div class="amount">
+        <strong>Amount:</strong> {{ operation.metadata.amount | currency:'USD' }}
+      </div>
+      
+      @if (operation.type === 'Loan') {
+        <div class="loan-details">
+          <div><strong>Interest Rate:</strong> {{ operation.metadata.interest }}%</div>
+          <div><strong>Payments:</strong> {{ operation.metadata.payment }}</div>
+        </div>
+      }
+    </div>
+  </div>

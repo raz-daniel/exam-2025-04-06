@@ -1,0 +1,44 @@
+<div class="container">
+    <h2>Account Operations</h2>
+    
+    <div class="search-container">
+      <input 
+        type="text" 
+        placeholder="Enter account number" 
+        class="account-input"
+        [ngModel]="searchInput()"
+        (ngModelChange)="searchInput.set($event)"
+        (keyup.enter)="operationsByAccount()" 
+      />
+      <button 
+        class="search-button" 
+        (click)="operationsByAccount()">
+        Search
+      </button>
+    </div>
+    
+    <div *ngIf="operations().length > 0" class="operations-container">
+      <h3>Operations for Account: {{ accountNumber() }}</h3>
+      
+      <div class="operations-grid">
+        @for (operation of operations(); track operation.id) {
+          <app-card 
+            [operation]="operation" 
+            [isHighlighted]="operation.id === newOperationId">
+          </app-card>
+        }
+      </div>
+    </div>
+    
+    <div *ngIf="accountNumber() && operations().length === 0" class="no-operations">
+      No operations found for account {{ accountNumber() }}
+    </div>
+    
+    <div *ngIf="!accountNumber()" class="instructions">
+      Enter an account number to view operations
+    </div>
+    
+    <div class="add-button-container">
+      <a routerLink="/add" class="add-button">Add New Operation</a>
+    </div>
+  </div>

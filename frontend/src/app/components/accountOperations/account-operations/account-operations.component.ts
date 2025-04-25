@@ -1,14 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AccountOperations } from '../../models/accountOperations/accountOperations.model';
-import { AccountOperationsService } from '../../services/accountOperations.service';
-
+import { RouterLink } from '@angular/router';
+import { AccountOperations } from '../../../models/accountOperations/accountOperations.model';
+import { AccountOperationsService } from '../../../services/accountOperations.service';
+import { CardComponent } from '../card/card.component';
 
 @Component({
   selector: 'app-account-operations',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, CardComponent, RouterLink],
   templateUrl: './account-operations.component.html',
   styleUrl: './account-operations.component.css'
 })
@@ -16,6 +17,7 @@ export class AccountOperationsComponent {
   operations = signal<AccountOperations[]>([]);
   newOperationId: string | null = null;
   accountNumber = signal<string>('');
+  searchInput = signal<string>('');
 
   constructor(
     public accountOperationService: AccountOperationsService,
@@ -30,10 +32,9 @@ export class AccountOperationsComponent {
     }, 3000);
   }
 
-  async operationsByAccount(event: Event) {
+  async operationsByAccount() {
     try {
-      const inputElement = event.target as HTMLInputElement;
-      const inputAccount = inputElement.value;
+      const inputAccount = this.searchInput();
       
       if (inputAccount && inputAccount.trim() !== '') {
         const operations = await this.accountOperationService.getOperationsByAccount(inputAccount);
