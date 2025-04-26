@@ -1,0 +1,18 @@
+{
+    "app": {
+        "port": "3005",
+        "name": "QA",
+        "sequelizeLogging": false
+    },
+    "sequelize": {
+        "logging": false,
+        "sync": {
+            "force": false
+        }
+    },
+    "mongoose": {
+        "host": "127.0.0.1",
+        "port": 27017,
+        "database": "toysRUs"
+    }
+}

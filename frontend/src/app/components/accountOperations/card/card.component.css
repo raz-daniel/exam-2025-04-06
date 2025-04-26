@@ -1,0 +1,58 @@
+.operation-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .highlight {
+    background-color: #e6f7ff;
+    border-color: #91d5ff;
+    box-shadow: 0 0 8px rgba(24, 144, 255, 0.5);
+  }
+  
+  .operation-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+  
+  .operation-type {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .deposit {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .withdrawal {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .loan {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .operation-date {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .operation-details {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  .loan-details {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #ddd;
+  }
