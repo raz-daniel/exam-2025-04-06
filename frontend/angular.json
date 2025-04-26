@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "02-social-network-client": {
+    "bank-opperation": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -38,7 +38,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/02-social-network-client",
+            "outputPath": "dist/bank-opperation",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -49,6 +49,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
@@ -90,10 +95,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "02-social-network-client:build:production"
+              "buildTarget": "bank-opperation:build:production"
             },
             "development": {
-              "buildTarget": "02-social-network-client:build:development"
+              "buildTarget": "bank-opperation:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -113,6 +118,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
